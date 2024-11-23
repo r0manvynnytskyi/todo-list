@@ -5,9 +5,7 @@
 {% block extrastyle %}{% endblock extrastyle %}
 </head>
 <body>
-    {% block pre_loader %}
-        {% include 'includes/pre-loader.html' %}
-    {% endblock pre_loader %}
+
 
     {% block sidebar %}
         {% include 'includes/sidebar.html' %}
@@ -21,7 +19,7 @@
     <section class="pcoded-main-container">
         <div class="pcoded-content">
             {% comment %} {% block breadcrumbs %}
-                {% include 'includes/breadcrumbs.html' %}
+                {% includes 'includes/breadcrumbs.html' %}
             {% endblock breadcrumbs %} {% endcomment %}
 
             {% block content %}{% endblock content %}
