@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Confirm Delete Task{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete the task: <strong>{{ task.content }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'task-list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
