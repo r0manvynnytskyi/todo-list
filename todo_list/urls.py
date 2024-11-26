@@ -1,23 +1,28 @@
-"""
-URL configuration for todo_list project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
-from django.contrib import admin
 from django.urls import path
+from .views import CustomLogoutView, TagDetailView
+from .views import (
+    index, toggle_task_status,
+    TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView,
+    TagListView, TagCreateView, TagUpdateView, TagDeleteView,
+)
+
+app_name = 'todo'
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+
+    path('', index, name='index'),
+
+    path('tasks/', TaskListView.as_view(), name='task-list'),
+    path('task/add/', TaskCreateView.as_view(), name='task-add'),
+    path('task/<int:pk>/update/', TaskUpdateView.as_view(), name='task-update'),
+    path('task/<int:pk>/delete/', TaskDeleteView.as_view(), name='task-delete'),
+    path('task/<int:pk>/toggle-status/', toggle_task_status, name='task-toggle-status'),
+
+    path('tags/', TagListView.as_view(), name='tag-list'),
+    path('tag/add/', TagCreateView.as_view(), name='tag-add'),
+    path('tag/<int:pk>/update/', TagUpdateView.as_view(), name='tag-update'),
+    path('tag/<int:pk>/delete/', TagDeleteView.as_view(), name='tag-delete'),
+    path('tag/<int:pk>/', TagDetailView.as_view(), name='tag-detail'),
+
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
 ]

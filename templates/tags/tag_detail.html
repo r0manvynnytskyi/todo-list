@@ -1,0 +1,41 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Tag Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Tag: {{ tag.name }}</h1>
+    <a href="{% url 'tag-update' tag.pk %}" class="btn btn-warning mb-3">Edit Tag</a>
+    <a href="{% url 'tag-delete' tag.pk %}" class="btn btn-danger mb-3">Delete Tag</a>
+    <hr>
+    <h2>Tasks for this Tag</h2>
+    <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ task.content }}</strong>
+                <br>
+                <small>Created at: {{ task.created_at }}</small>
+                {% if task.deadline %}
+                <br>
+                <small>Deadline: {{ task.deadline }}</small>
+                {% endif %}
+                <br>
+                <small>Status: {{ task.is_done|yesno:"Done,Not Done" }}</small>
+            </div>
+            <div>
+                <a href="{% url 'task-update' task.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'task-delete' task.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                {% if task.is_done %}
+                <a href="#" class="btn btn-secondary btn-sm">Undo</a>
+                {% else %}
+                <a href="#" class="btn btn-success btn-sm">Complete</a>
+                {% endif %}
+            </div>
+        </li>
+        {% empty %}
+        <p>No tasks associated with this tag.</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Tag List{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Tag List</h1>
+    <a href="{% url 'tag-add' %}" class="btn btn-primary mb-3">Add New Tag</a>
+
+    <ul class="list-group">
+        {% for tag in tags %}
+        <li class="list-group-item">
+            <a href="{% url 'tag-detail' tag.pk %}">{{ tag.name }}</a>
+        </li>
+        {% empty %}
+        <p>No tags available.</p>
+        {% endfor %}
+    </ul>
+
+    
+    
+    </nav>
+</div>
+{% endblock %}

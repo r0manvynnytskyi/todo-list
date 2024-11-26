@@ -1,0 +1,54 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- [ Main Content ] start -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card text-center">
+            <div class="card-body">
+                <h1 class="display-4">Welcome to Todo List!</h1>
+                <p class="lead">
+                    Manage your tasks effectively and stay organized with our app.
+                </p>
+                <a href="{% url 'task-list' %}" class="btn btn-primary btn-lg">Get Started</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card bg-c-blue order-card">
+            <div class="card-body text-center">
+                <h6 class="text-white">Create Tasks</h6>
+                <p class="m-b-0">Easily add and manage your tasks.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-c-green order-card">
+            <div class="card-body text-center">
+                <h6 class="text-white">Track Progress</h6>
+                <p class="m-b-0">Stay updated with your task status.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-c-yellow order-card">
+            <div class="card-body text-center">
+                <h6 class="text-white">Collaborate</h6>
+                <p class="m-b-0">Work together with your team seamlessly.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ Main Content ] end -->
+{% endblock content %}
+
+{% block extrajs %}
+<!-- Optional JavaScript if needed -->
+<script src="{% static 'assets/js/plugins/apexcharts.min.js' %}"></script>
+<script>
+    console.log("Welcome page loaded.");
+</script>
+{% endblock extrajs %}
