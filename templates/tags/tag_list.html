@@ -1,31 +1,24 @@
-{% extends 'layouts/base.html' %}
+{% extends "layouts/base.html" %}
+
+{% block title %}Tag List{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Tag List</h2>
-    <a href="{% url 'tag-add' %}" class="btn btn-success mb-3">Add New Tag</a>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for tag in object_list %}
-                <tr>
-                    <td>{{ tag.name }}</td>
-                    <td>
-                        <a href="{% url 'tag-update' tag.pk %}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{% url 'tag-delete' tag.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="2">No tags available.</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container">
+    <h1>Tag List</h1>
+    <a href="{% url 'tag-add' %}" class="btn btn-primary mb-3">Add New Tag</a>
+
+    <ul class="list-group">
+        {% for tag in tags %}
+        <li class="list-group-item">
+            <a href="{% url 'tag-detail' tag.pk %}">{{ tag.name }}</a>
+        </li>
+        {% empty %}
+        <p>No tags available.</p>
+        {% endfor %}
+    </ul>
+
+    
+    
+    </nav>
 </div>
 {% endblock %}

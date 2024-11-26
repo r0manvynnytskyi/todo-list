@@ -11,16 +11,6 @@ def index(request):
     return render(request, 'index.html')
 
 
-def toggle_task_status(request, pk):
-    task = get_object_or_404(Task, pk=pk)
-
-
-    task.is_done = not task.is_done
-    task.save()
-
-    return redirect('task-list')
-
-
 # Task Form
 class TaskForm(forms.ModelForm):
     class Meta:
@@ -109,3 +99,14 @@ class TagDetailView(generic.DetailView):
 class CustomLogoutView(LogoutView):
     template_name = 'includes/logout.html'
     next_page = reverse_lazy('home')
+
+
+def toggle_task_status(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+
+
+    task.is_done = not task.is_done
+    task.save()
+
+    return redirect('task-list')
+
