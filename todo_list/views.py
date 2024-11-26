@@ -4,11 +4,21 @@ from django.urls import reverse_lazy
 from django import forms
 from django.views import generic
 from .models import Task, Tag
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 
 
 def index(request):
     return render(request, 'index.html')
+
+
+def toggle_task_status(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+
+
+    task.is_done = not task.is_done
+    task.save()
+
+    return redirect('task-list')
 
 
 # Task Form

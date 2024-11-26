@@ -23,10 +23,19 @@
             <div>
                 <a href="{% url 'task-update' task.pk %}" class="btn btn-warning btn-sm">Edit</a>
                 <a href="{% url 'task-delete' task.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                
                 {% if task.is_done %}
-                <a href="#" class="btn btn-secondary btn-sm">Undo</a>
+                <!-- Undo button: Change task status back to not done -->
+                <form action="{% url 'task-toggle-status' task.pk %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary btn-sm">Undo</button>
+                </form>
                 {% else %}
-                <a href="#" class="btn btn-success btn-sm">Complete</a>
+                <!-- Complete button: Change task status to done -->
+                <form action="{% url 'task-toggle-status' task.pk %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success btn-sm">Complete</button>
+                </form>
                 {% endif %}
             </div>
         </li>

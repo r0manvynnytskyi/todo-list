@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import CustomLogoutView
 from .views import (
-    index,
+    index, toggle_task_status,
     TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView,
     TagListView, TagCreateView, TagUpdateView, TagDeleteView,
 )
@@ -19,5 +19,6 @@ urlpatterns = [
     path('tag/add/', TagCreateView.as_view(), name='tag-add'),
     path('tag/<int:pk>/update/', TagUpdateView.as_view(), name='tag-update'),
     path('tag/<int:pk>/delete/', TagDeleteView.as_view(), name='tag-delete'),
-    path('logout/', CustomLogoutView.as_view(), name='logout')
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('task/<int:pk>/toggle-status/', toggle_task_status, name='task-toggle-status'),
 ]
