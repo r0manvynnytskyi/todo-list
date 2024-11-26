@@ -1,0 +1,51 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Task Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Task Details</h1>
+    <hr>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ task.content }}</h5>
+            <p class="card-text">
+                <strong>Created At:</strong> {{ task.created_at }}<br>
+                {% if task.deadline %}
+                    <strong>Deadline:</strong> {{ task.deadline }}<br>
+                {% endif %}
+                <strong>Status:</strong> {{ task.is_done|yesno:"Done,Not Done" }}
+            </p>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'task-update' task.pk %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'task-delete' task.pk %}" class="btn btn-danger">Delete</a>
+            {% if task.is_done %}
+                <form action="{% url 'task-toggle-status' task.pk %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary">Undo</button>
+                </form>
+            {% else %}
+                <form action="{% url 'task-toggle-status' task.pk %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Complete</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <h2>Associated Tags</h2>
+    {% if task.tags.all %}
+        <ul class="list-group">
+            {% for tag in task.tags.all %}
+            <li class="list-group-item">
+                <a href="{% url 'tag-detail' tag.pk %}">{{ tag.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tags associated with this task.</p>
+    {% endif %}
+    <a href="{% url 'task-list' %}" class="btn btn-primary mt-3">Back to Task List</a>
+</div>
+{% endblock %}
