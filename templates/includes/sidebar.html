@@ -1,31 +1,49 @@
 <div class="sidebar">
     <ul>
         <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'task-list' %}">Task List</a></li>
         <li><a href="{% url 'tag-list' %}">Tag List</a></li>
     </ul>
 </div>
 
 <style>
     .sidebar {
-        width: 200px;
+        width: 250px;
         background-color: #f8f9fa;
-        padding: 20px;
+        padding: 40px;
         position: fixed;
         height: 100%;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
+
     .sidebar ul {
         list-style: none;
         padding: 0;
+        margin: 0;
     }
+
     .sidebar ul li {
-        margin: 10px 0;
+        margin: 30px 0;
     }
+
     .sidebar ul li a {
         text-decoration: none;
         color: #333;
         font-weight: bold;
+        font-size: 18px;
+        display: block;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
     }
+
     .sidebar ul li a:hover {
-        color: #007bff;
+        color: white;
+        background-color: #007bff;
+    }
+    
+    .sidebar ul li a.active {
+        background-color: #0056b3;
+        color: white;
     }
 </style>
