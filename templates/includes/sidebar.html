@@ -1,5 +1,31 @@
-<nav class="pcoded-navbar menupos-fixed menu-light ">
-    <div>
-        
-        </div>
-</nav>
+<div class="sidebar">
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'tag-list' %}">Tag List</a></li>
+    </ul>
+</div>
+
+<style>
+    .sidebar {
+        width: 200px;
+        background-color: #f8f9fa;
+        padding: 20px;
+        position: fixed;
+        height: 100%;
+    }
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+    .sidebar ul li {
+        margin: 10px 0;
+    }
+    .sidebar ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+    .sidebar ul li a:hover {
+        color: #007bff;
+    }
+</style>
