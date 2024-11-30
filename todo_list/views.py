@@ -101,12 +101,9 @@ class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('home')
 
 
-def toggle_task_status(request, pk):
-    task = get_object_or_404(Task, pk=pk)
-
-
-    task.is_done = not task.is_done
-    task.save()
-
-    return redirect('task-list')
-
+class ToggleTaskStatusView(View):
+    def post(self, request, pk):
+        task = get_object_or_404(Task, pk=pk)
+        task.is_done = not task.is_done
+        task.save()
+        return redirect('task-list')
